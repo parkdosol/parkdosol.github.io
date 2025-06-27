@@ -117,7 +117,6 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "I am a mechanical engineering student at Korea Aerospace University."
   location         : "Suwon, South Korea"
-  email            : "parkdosol1@gmail.com"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -125,6 +124,9 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/dosol-park"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:parkdosol1@gmail.com"
 
 # Site Footer
 footer:
