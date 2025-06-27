@@ -5,7 +5,6 @@ permalink: /kau/cad-project/
 author_profile: true
 ---
 
-
 ![CATIA Rover Model 1](/assets/images/kau/CATIA_Rover_1.png)
 <!-- ![CATIA Rover Model 2](/assets/images/kau/CATIA_Rover_2.png)
 ![CATIA Rover Model 3](/assets/images/kau/CATIA_Rover_3.png)
