@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: single
 title: "KAU"
 permalink: /kau/
 author_profile: true
@@ -11,4 +11,5 @@ author_profile: true
 
 ## 🛠 프로젝트 목록
 
+- [Capstone Design](/kau/capstone)
 - [전산응용제도 CAD 프로젝트](/kau/cad-project/)
