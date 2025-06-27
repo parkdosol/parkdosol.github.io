@@ -4,10 +4,18 @@ title: "KAU"
 permalink: /kau/
 author_profile: true
 ---
+
 기계공학을 전공하며 수행한 전공 프로젝트들 
 
 ## 🛠 프로젝트 목록
 
-- [Capstone Design](/kau/capstone)
-- [전산응용제도(Computer Aided Design)](/kau/cad-project/)
-- [Mechanical Element Design]
+- [Capstone Design (캡스톤디자인)](/kau/capstone/)
+- [Computer-Aided Design (전산응용제도)](/kau/cad-project/)
+- [Capstone Design (캡스톤디자인)](/kau/capstone/)
+- [Computer-Aided Design (전산응용제도)](/kau/cad-project/)
+- [Mechanical Element Design (기계요소설계)](/kau/mechanical-element-design/)
+- [Introduction to Machine Learning (머신러닝입문)](/kau/introduction-to-machine-learning/)
+- [CAD/CAM](/kau/cad-cam/)
+- [Kinematics (기구학)](/kau/kinematics/)
+- [Dynamics (동역학)](/kau/dynamics/)
+- [Manufacturing Processes (기계공작법)](/kau/manufacturing-processes/)

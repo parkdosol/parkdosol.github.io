@@ -1,8 +1,8 @@
 ---
 layout: single
-title: "Capstone Design I"
+title: "Capstone Design"
 permalink: /kau/capstone-design/
 author_profile: true
 ---
 
-# 🚗 Capstone Design 
+# MuJoCo + Unity 연결 구조
