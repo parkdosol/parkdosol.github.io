@@ -6,3 +6,5 @@ main:
     url: "/about/"
   - title: "KAU"
     url: "/kau/"
+  - title: "Notes"
+    url: "/notes/"
