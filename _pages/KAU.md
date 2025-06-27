@@ -10,6 +10,7 @@ Korea Aerospace University (2022-2025)
 ### 🛠 Mechanical Engineering 
 - [Capstone Design (캡스톤디자인)](/kau/capstone-design/)
 - [Computer-Aided Design (전산응용제도)](/kau/cad-project/)
+    ![CATIA Rover Model 1](/assets/images/kau/CATIA_Rover_1.png)
 - [Mechanical Element Design (기계요소설계)](/kau/mechanical-element-design/)
 - [Introduction to Machine Learning (머신러닝입문)](/kau/introduction-to-machine-learning/)
 - [CAD/CAM](/kau/cad-cam/)
