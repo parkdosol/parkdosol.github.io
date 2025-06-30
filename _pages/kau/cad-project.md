@@ -13,6 +13,7 @@ author_profile: true
 # 전산응용제도 프로젝트 
 
 ## ✈️ 프로젝트 개요 
+- **기간** : 2025년 1학기
 - **주제** : 항공기 3D 모델링 프로젝트 
 - **세부 주제** : Nasa Curiosity Rover 제작 
 - **모델링 툴** : CATIA V5
