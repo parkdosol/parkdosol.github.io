@@ -23,10 +23,10 @@ MuJoCo, Unity, ROS, Gazebo
 #### Engineering Tools
 **CATIA, FreeCAD**, Ansys, RecurDyn, LabVIEW
 
-#### *Productivity
+#### Productivity
 Git, Docker, Obsidian, VS Code, Notion
 
-## 🔭 Current Projects
+## Current Projects
 
 #### Capstone Design
   Team leader of a vehicle simulation project using Unity + MuJoCo.  
