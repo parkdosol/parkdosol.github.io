@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Capstone Design"
+title: "Mechanical Elemnt Design"
 permalink: /kau/mechanical-element-design/
 author_profile: true
 ---
