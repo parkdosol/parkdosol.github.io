@@ -7,7 +7,7 @@ author_profile: true
 
 ![showerhead](/assets/images/kau/manufacturing-processes.png)
 
-# 기계공작법 프로젝트트
+# 기계공작법 프로젝트
 
 ## ✈️ 프로젝트 개요 
 - **기간** : 2023년 1학기
