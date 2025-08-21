@@ -6,5 +6,3 @@ main:
     url: "/about/"
   - title: "KAU"
     url: "/kau/"
-  - title: "Pomodoro"
-    url: "/pomodoro/"
