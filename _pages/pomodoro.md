@@ -13,7 +13,33 @@ toc: false
     </div>
     
     <div class="timer-display">
-      <div id="time-display">25:00</div>
+      <div class="circular-timer">
+        <svg class="circular-progress" width="200" height="200">
+          <circle
+            class="circular-progress-bg"
+            cx="100"
+            cy="100"
+            r="85"
+            fill="none"
+            stroke="#f0f0f0"
+            stroke-width="10"
+          />
+          <circle
+            class="circular-progress-bar"
+            cx="100"
+            cy="100"
+            r="85"
+            fill="none"
+            stroke="#e74c3c"
+            stroke-width="10"
+            stroke-linecap="round"
+            stroke-dasharray="534.07"
+            stroke-dashoffset="534.07"
+            transform="rotate(-90 100 100)"
+          />
+        </svg>
+        <div id="time-display">25:00</div>
+      </div>
     </div>
     
     <div class="timer-controls">
@@ -62,14 +88,44 @@ toc: false
 
 .timer-display {
   margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-timer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+}
+
+.circular-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+.circular-progress-bg {
+  opacity: 0.3;
+}
+
+.circular-progress-bar {
+  transition: stroke-dashoffset 1s ease-in-out;
 }
 
 #time-display {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: #e74c3c;
+  color: #333;
   font-family: 'Courier New', monospace;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 10;
+  text-align: center;
 }
 
 .timer-controls {
@@ -171,7 +227,7 @@ toc: false
   font-size: 1.2rem;
 }
 
-/* 반응형 디자인 */
+  /* 반응형 디자인 */
 @media (max-width: 768px) {
   #pomodoro-timer {
     padding: 1rem;
@@ -181,8 +237,18 @@ toc: false
     padding: 1.5rem;
   }
   
+  .circular-timer {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .circular-progress {
+    width: 150px;
+    height: 150px;
+  }
+  
   #time-display {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   
   .timer-controls {
@@ -247,6 +313,11 @@ class PomodoroTimer {
     this.longBreakModeBtn = document.getElementById('long-break-mode');
     this.completedPomodorosDisplay = document.getElementById('completed-pomodoros');
     this.timerContainer = document.querySelector('.timer-container');
+    this.progressBar = document.querySelector('.circular-progress-bar');
+    
+    // 원형 진행바 설정
+    this.circleRadius = 85;
+    this.circleCircumference = 2 * Math.PI * this.circleRadius;
     
     this.initEventListeners();
     this.updateDisplay();
@@ -291,6 +362,9 @@ class PomodoroTimer {
     this.pauseTimer();
     this.timeLeft = this.modes[this.currentMode] * 60;
     this.updateDisplay();
+    // 진행바도 리셋
+    this.progressBar.style.strokeDashoffset = this.circleCircumference;
+    this.progressBar.style.stroke = '#e74c3c';
   }
   
   completeTimer() {
@@ -349,12 +423,31 @@ class PomodoroTimer {
     const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     this.timeDisplay.textContent = timeString;
     
+    // 원형 진행바 업데이트
+    this.updateProgress();
+    
     // 브라우저 탭 제목 업데이트
     if (this.isRunning) {
       document.title = `${timeString} - 뽀모도로 타이머`;
     } else {
       document.title = '뽀모도로 타이머';
     }
+  }
+  
+  updateProgress() {
+    const totalTime = this.modes[this.currentMode] * 60;
+    const progress = (totalTime - this.timeLeft) / totalTime;
+    const offset = this.circleCircumference - (progress * this.circleCircumference);
+    
+    this.progressBar.style.strokeDashoffset = offset;
+    
+    // 시간이 지날수록 더 진한 빨간색으로 변경
+    const intensity = Math.min(progress * 1.5, 1); // 1.5배로 더 빠르게 진해짐
+    const red = Math.floor(231 * (0.6 + 0.4 * intensity)); // 기본 빨간색에서 더 진해짐
+    const green = Math.floor(76 * (1 - intensity * 0.7)); // 초록색 성분 감소
+    const blue = Math.floor(60 * (1 - intensity * 0.8)); // 파란색 성분 감소
+    
+    this.progressBar.style.stroke = `rgb(${red}, ${green}, ${blue})`;
   }
   
   updateStatsDisplay() {
