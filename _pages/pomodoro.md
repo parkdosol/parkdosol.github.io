@@ -14,31 +14,80 @@ toc: false
     
     <div class="timer-display">
       <div class="circular-timer">
-        <svg class="circular-progress" width="200" height="200">
-          <circle
-            class="circular-progress-bg"
-            cx="100"
-            cy="100"
-            r="85"
-            fill="none"
-            stroke="#f0f0f0"
-            stroke-width="10"
-          />
-          <circle
-            class="circular-progress-bar"
-            cx="100"
-            cy="100"
-            r="85"
-            fill="none"
-            stroke="#e74c3c"
-            stroke-width="10"
-            stroke-linecap="round"
-            stroke-dasharray="534.07"
-            stroke-dashoffset="534.07"
-            transform="rotate(-90 100 100)"
-          />
-        </svg>
-        <div id="time-display">25:00</div>
+        <div class="timer-face">
+          <svg class="timer-svg" width="280" height="280" viewBox="0 0 280 280">
+            <!-- 배경 원 -->
+            <circle
+              cx="140"
+              cy="140"
+              r="120"
+              fill="#f8f9fa"
+              stroke="#e9ecef"
+              stroke-width="2"
+            />
+            
+            <!-- 분 단위 표시선들 -->
+            <g class="minute-ticks">
+              <!-- 5분 단위 굵은 선들 -->
+              <g class="major-ticks" stroke="#6c757d" stroke-width="2">
+                <!-- 12시 (0분) -->
+                <line x1="140" y1="25" x2="140" y2="35" />
+                <!-- 3시 (15분) -->
+                <line x1="255" y1="140" x2="245" y2="140" />
+                <!-- 6시 (30분) -->
+                <line x1="140" y1="255" x2="140" y2="245" />
+                <!-- 9시 (45분) -->
+                <line x1="25" y1="140" x2="35" y2="140" />
+                <!-- 기타 5분 단위들 -->
+                <line x1="204.3" y1="46.4" x2="197.7" y2="52.9" />
+                <line x1="233.6" y1="75.7" x2="227.1" y2="82.3" />
+                <line x1="233.6" y1="204.3" x2="227.1" y2="197.7" />
+                <line x1="204.3" y1="233.6" x2="197.7" y2="227.1" />
+                <line x1="75.7" y1="233.6" x2="82.3" y2="227.1" />
+                <line x1="46.4" y1="204.3" x2="52.9" y2="197.7" />
+                <line x1="46.4" y1="75.7" x2="52.9" y2="82.3" />
+                <line x1="75.7" y1="46.4" x2="82.3" y2="52.9" />
+              </g>
+            </g>
+            
+            <!-- 진행 영역 -->
+            <circle
+              class="timer-progress"
+              cx="140"
+              cy="140"
+              r="95"
+              fill="none"
+              stroke="#dc3545"
+              stroke-width="30"
+              stroke-linecap="round"
+              stroke-dasharray="596.9"
+              stroke-dashoffset="596.9"
+              transform="rotate(-90 140 140)"
+            />
+            
+            <!-- 숫자 표시 -->
+            <g class="timer-numbers" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#495057" text-anchor="middle" dominant-baseline="central">
+              <text x="140" y="35">0</text>
+              <text x="190" y="50">5</text>
+              <text x="230" y="80">10</text>
+              <text x="250" y="115">15</text>
+              <text x="250" y="155">20</text>
+              <text x="230" y="190">25</text>
+              <text x="190" y="220">30</text>
+              <text x="140" y="235">35</text>
+              <text x="90" y="220">40</text>
+              <text x="50" y="190">45</text>
+              <text x="30" y="155">50</text>
+              <text x="30" y="115">55</text>
+            </g>
+          </svg>
+          
+          <!-- 중앙 원과 시간 표시 -->
+          <div class="timer-center">
+            <div class="center-circle"></div>
+            <div id="time-display">25:00</div>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -98,34 +147,64 @@ toc: false
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
 }
 
-.circular-progress {
+.timer-face {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  box-shadow: 
+    20px 20px 40px rgba(0, 0, 0, 0.1),
+    -20px -20px 40px rgba(255, 255, 255, 0.8),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.timer-svg {
+  display: block;
+}
+
+.timer-progress {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  filter: drop-shadow(0 0 8px rgba(220, 53, 69, 0.3));
+}
+
+.timer-center {
   position: absolute;
-  top: 0;
-  left: 0;
-  transform: rotate(0deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.circular-progress-bg {
-  opacity: 0.3;
-}
-
-.circular-progress-bar {
-  transition: stroke-dashoffset 1s ease-in-out;
+.center-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+  position: absolute;
+  z-index: 5;
 }
 
 #time-display {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
-  font-family: 'Courier New', monospace;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  z-index: 10;
+  color: #495057;
+  font-family: 'Arial', sans-serif;
   text-align: center;
+  z-index: 10;
+  position: relative;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.timer-numbers {
+  font-weight: 600;
 }
 
 .timer-controls {
@@ -237,18 +316,31 @@ toc: false
     padding: 1.5rem;
   }
   
-  .circular-timer {
-    width: 150px;
-    height: 150px;
+  .timer-face {
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 
+      15px 15px 30px rgba(0, 0, 0, 0.1),
+      -15px -15px 30px rgba(255, 255, 255, 0.8),
+      inset 3px 3px 6px rgba(0, 0, 0, 0.05);
   }
   
-  .circular-progress {
-    width: 150px;
-    height: 150px;
+  .timer-svg {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .center-circle {
+    width: 45px;
+    height: 45px;
   }
   
   #time-display {
-    font-size: 2rem;
+    font-size: 1.4rem;
+  }
+  
+  .timer-numbers {
+    font-size: 12px;
   }
   
   .timer-controls {
@@ -313,10 +405,10 @@ class PomodoroTimer {
     this.longBreakModeBtn = document.getElementById('long-break-mode');
     this.completedPomodorosDisplay = document.getElementById('completed-pomodoros');
     this.timerContainer = document.querySelector('.timer-container');
-    this.progressBar = document.querySelector('.circular-progress-bar');
+    this.progressBar = document.querySelector('.timer-progress');
     
-    // 원형 진행바 설정
-    this.circleRadius = 85;
+    // 원형 진행바 설정 (새로운 반지름에 맞춤)
+    this.circleRadius = 95;
     this.circleCircumference = 2 * Math.PI * this.circleRadius;
     
     this.initEventListeners();
@@ -364,7 +456,7 @@ class PomodoroTimer {
     this.updateDisplay();
     // 진행바도 리셋
     this.progressBar.style.strokeDashoffset = this.circleCircumference;
-    this.progressBar.style.stroke = '#e74c3c';
+    this.progressBar.style.stroke = '#dc3545';
   }
   
   completeTimer() {
@@ -441,11 +533,11 @@ class PomodoroTimer {
     
     this.progressBar.style.strokeDashoffset = offset;
     
-    // 시간이 지날수록 더 진한 빨간색으로 변경
-    const intensity = Math.min(progress * 1.5, 1); // 1.5배로 더 빠르게 진해짐
-    const red = Math.floor(231 * (0.6 + 0.4 * intensity)); // 기본 빨간색에서 더 진해짐
-    const green = Math.floor(76 * (1 - intensity * 0.7)); // 초록색 성분 감소
-    const blue = Math.floor(60 * (1 - intensity * 0.8)); // 파란색 성분 감소
+    // 사진처럼 일정한 빨간색 유지 (약간의 변화만)
+    const intensity = Math.min(progress * 0.3, 0.3); // 매우 미세한 변화
+    const red = Math.floor(220 - intensity * 20); // 220에서 200 사이
+    const green = Math.floor(53 - intensity * 20); // 53에서 33 사이  
+    const blue = Math.floor(69 - intensity * 30); // 69에서 39 사이
     
     this.progressBar.style.stroke = `rgb(${red}, ${green}, ${blue})`;
   }
